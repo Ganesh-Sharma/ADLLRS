@@ -7,7 +7,7 @@ services:
     build: 
       context: postgres
     ports:
-      - "5482:5482"
+      - "5432:5432"
     container_name: docker_postgres
     # Persist this data between sessions
     volumes:
@@ -26,7 +26,7 @@ services:
     container_name: docker_rabbit
     ports:
       - "15672:15672"
-      - "14672:14672"
+      - "5672:5672"
   
   # The actual ADL LRS service run through uWSGI
   lrs:
@@ -46,8 +46,8 @@ services:
     build: 
       context: nginx
     ports:
-      - "23:23"
-      - "8443:8443"
+      - "80:80"
+      - "443:443"
     container_name: docker_nginx
     links:
       - lrs
